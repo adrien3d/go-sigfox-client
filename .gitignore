@@ -1,0 +1,5 @@
+.idea/
+vendor/
+
+.env.prod
+sigfox-api-keys-prod.json

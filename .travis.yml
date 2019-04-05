@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - master
+
+script: SFCONSUMER_ENV=testing go test ./...
+
+go_import_path: github.com/adrien3d/sigfox-consumer
+
+notifications:
+  email: true
