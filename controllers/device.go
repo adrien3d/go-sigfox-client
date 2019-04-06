@@ -14,18 +14,15 @@ func NewDeviceController() DeviceController {
 
 func (dc DeviceController) GetDevices(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/devices/"
-	devices := devices.Devices{}
-	SigfoxAPIRequest(c, url, devices)
+	SigfoxAPIRequest(c, url, new(devices.Devices))
 }
 
 func (dc DeviceController) GetDeviceMessages(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/devices/" + c.Param("sigfoxId") + "/messages"
-	messages := devices.DeviceMessages{}
-	SigfoxAPIRequest(c, url, messages)
+	SigfoxAPIRequest(c, url, new(devices.DeviceMessages))
 }
 
 func (dc DeviceController) GetDeviceLocations(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/devices/" + c.Param("sigfoxId") + "/locations"
-	locations := devices.DeviceLocations{}
-	SigfoxAPIRequest(c, url, locations)
+	SigfoxAPIRequest(c, url, new(devices.DeviceLocations))
 }
