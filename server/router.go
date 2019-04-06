@@ -37,14 +37,20 @@ func (a *API) SetupRouter() {
 
 	router.Use(ConfigMiddleware(a.Config))
 
-	// Simple group: sigfox
 	router.GET("/", Index)
 	devices := router.Group("/devices")
 	{
 		deviceController := controllers.NewDeviceController()
-		devices.GET("/:sigfoxId/infos", deviceController.GetDevices)
-		devices.GET("/:sigfoxId/info", deviceController.GetDevice)
-		devices.GET("/:sigfoxId/messages", deviceController.GetDeviceMessages)
-		devices.GET("/:sigfoxId/locations", deviceController.GetDeviceLocations)
+		devices.GET("/:id/info", deviceController.GetDevice)
+		devices.GET("/:id/infos", deviceController.GetDevices)
+		devices.GET("/:id/messages", deviceController.GetDeviceMessages)
+		devices.GET("/:id/locations", deviceController.GetDeviceLocations)
+	}
+
+	users := router.Group("/users")
+	{
+		userController := controllers.NewUserController()
+		users.GET("/:id/info", userController.GetUser)
+		users.GET("/:id/infos", userController.GetUsers)
 	}
 }

@@ -18,31 +18,31 @@ type CbStatus struct {
 }
 
 type ReceptionInfos struct {
-	BaseStation   IdName       `json:"baseStation"`
-	Delay         float64      `json:"delay"` // Not in Sigfox API Documentation
-	Rssi          float64      `json:"rssi,omitempty"`
-	RssiRepeaters float64      `json:"rssiRepeaters,omitempty"`
-	Latitude      string       `json:"lat"` //Should be in int in Sigfox API
-	Longitude     string       `json:"lng"` //Should be in int in Sigfox API
-	Snr           float64      `json:"snr,omitempty"`
-	SnrRepeaters  float64      `json:"snrRepeaters,omitempty"`
-	Freq          float64      `json:"freq,omitempty"`
-	FreqRepeaters float64      `json:"freqRepeaters,omitempty"`
-	Rep           int64        `json:"rep,omitempty"`
-	Repetitions   []Repetition `json:"repetitions,omitempty"`
-	CbStatus      CbStatus     `json:"cbStatus,omitempty"`
+	BaseStation   models.IdName `json:"baseStation"`
+	Delay         float64       `json:"delay"` // Not in Sigfox API Documentation
+	Rssi          float64       `json:"rssi,omitempty"`
+	RssiRepeaters float64       `json:"rssiRepeaters,omitempty"`
+	Latitude      string        `json:"lat"` //Should be in int in Sigfox API
+	Longitude     string        `json:"lng"` //Should be in int in Sigfox API
+	Snr           float64       `json:"snr,omitempty"`
+	SnrRepeaters  float64       `json:"snrRepeaters,omitempty"`
+	Freq          float64       `json:"freq,omitempty"`
+	FreqRepeaters float64       `json:"freqRepeaters,omitempty"`
+	Rep           int64         `json:"rep,omitempty"`
+	Repetitions   []Repetition  `json:"repetitions,omitempty"`
+	CbStatus      CbStatus      `json:"cbStatus,omitempty"`
 }
 
 type DownlinkAnswerStatus struct {
-	BaseStation  IdName  `json:"baseStation,omitempty"`
-	PlannedPower float64 `json:"plannedPower,omitempty"`
-	Data         string  `json:"data,omitempty"`
-	Operator     string  `json:"operator,omitempty"`
-	Country      string  `json:"country,omitempty"`
+	BaseStation  models.IdName `json:"baseStation,omitempty"`
+	PlannedPower float64       `json:"plannedPower,omitempty"`
+	Data         string        `json:"data,omitempty"`
+	Operator     string        `json:"operator,omitempty"`
+	Country      string        `json:"country,omitempty"`
 }
 
 type DeviceMessage struct {
-	Device               IdName               `json:"device"`
+	Device               models.IdName        `json:"device"`
 	Time                 int64                `json:"time"`
 	Data                 string               `json:"data"`
 	RolloverCounter      int64                `json:"rolloverCounter"` // Not in Sigfox API Documentation

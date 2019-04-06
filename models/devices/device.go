@@ -14,18 +14,6 @@ type ComputedLocation struct {
 	Source    int8    `json:"source"`
 }
 
-type Group struct {
-	Id    string `json:"id"`
-	Name  string `json:"name,omitempty"`
-	Type  string `json:"type,omitempty"`
-	Level int64  `json:"level,omitempty"`
-}
-
-type IdName struct {
-	Id   string `json:"id"`
-	Name string `json:"name,omitempty"`
-}
-
 type Token struct {
 	State              int64  `json:"state"`
 	DetailMessage      string `json:"detailMessage"`
@@ -44,20 +32,20 @@ type DeviceInformation struct {
 	Pac                    string           `json:"pac"`
 	Location               Location         `json:"location"`
 	LastComputedLocation   ComputedLocation `json:"lastComputedLocation"`
-	Group                  Group            `json:"group"`
-	DeviceType             IdName           `json:"deviceType"`
+	Group                  models.Group     `json:"group"`
+	DeviceType             models.IdName    `json:"deviceType"`
 	AverageSnr             int64            `json:"averageSnr,omitempty"`
 	AverageRssi            int64            `json:"averageRssi,omitempty"`
 	ActivationTime         int64            `json:"activationTime"`
-	Contract               IdName           `json:"contract"`
+	Contract               models.IdName    `json:"contract"`
 	Token                  Token            `json:"token"`
 	CreatedBy              string           `json:"createdBy"`
 	LastEditionTime        int64            `json:"lastEditionTime"`
 	LastEditedBy           string           `json:"lastEditedBy"`
 	UnsubscriptionTime     int64            `json:"unsubscriptionTime"`
 	CreationTime           int64            `json:"creationTime"`
-	ModemCertificate       IdName           `json:"modemCertificate"`
-	ProductCertificate     IdName           `json:"productCertificate"`
+	ModemCertificate       models.IdName    `json:"modemCertificate"`
+	ProductCertificate     models.IdName    `json:"productCertificate"`
 	State                  int64            `json:"state"`
 	ComState               int64            `json:"comState"`
 	AutomaticRenewal       bool             `json:"automaticRenewal"`
