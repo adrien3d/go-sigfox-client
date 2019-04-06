@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/adrien3d/go-sigfox-client/config"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -14,6 +15,7 @@ func SigfoxAPIRequest(c *gin.Context, apiUrl string, respType interface{}) {
 	req, _ := http.NewRequest("GET", apiUrl, nil)
 
 	key := config.RetrieveSigfoxAPIKey(c)
+	fmt.Println(key)
 	req.SetBasicAuth(key.SigfoxKey, key.SigfoxSecret)
 
 	resp, err := client.Do(req)

@@ -42,7 +42,8 @@ func (a *API) SetupRouter() {
 	devices := router.Group("/devices")
 	{
 		deviceController := controllers.NewDeviceController()
-		devices.GET("/", deviceController.GetDevices)
+		devices.GET("/:sigfoxId/infos", deviceController.GetDevices)
+		devices.GET("/:sigfoxId/info", deviceController.GetDevice)
 		devices.GET("/:sigfoxId/messages", deviceController.GetDeviceMessages)
 		devices.GET("/:sigfoxId/locations", deviceController.GetDeviceLocations)
 	}

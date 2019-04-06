@@ -12,6 +12,11 @@ func NewDeviceController() DeviceController {
 	return DeviceController{}
 }
 
+func (dc DeviceController) GetDevice(c *gin.Context) {
+	url := "https://api.sigfox.com/v2/devices/" + c.Param("sigfoxId")
+	SigfoxAPIRequest(c, url, new(devices.DeviceInformation))
+}
+
 func (dc DeviceController) GetDevices(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/devices/"
 	SigfoxAPIRequest(c, url, new(devices.Devices))

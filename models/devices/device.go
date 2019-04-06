@@ -16,23 +16,23 @@ type ComputedLocation struct {
 
 type Group struct {
 	Id    string `json:"id"`
-	Name  string `json:"name"`
-	Type  string `json:"type"`
-	Level int64  `json:"level"`
+	Name  string `json:"name,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Level int64  `json:"level,omitempty"`
 }
 
 type IdName struct {
 	Id   string `json:"id"`
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 type Token struct {
 	State              int64  `json:"state"`
 	DetailMessage      string `json:"detailMessage"`
 	End                int64  `json:"end"`
-	UnsubscriptionTime int64  `json:"unsubscriptionTime"`
-	FreeMessages       int64  `json:"freeMessages"`
-	FreeMessagesSent   int64  `json:"freeMessagesSent"`
+	UnsubscriptionTime int64  `json:"unsubscriptionTime,omitempty"`
+	FreeMessages       int64  `json:"freeMessages,omitempty"`
+	FreeMessagesSent   int64  `json:"freeMessagesSent,omitempty"`
 }
 
 type DeviceInformation struct {
@@ -46,8 +46,8 @@ type DeviceInformation struct {
 	LastComputedLocation   ComputedLocation `json:"lastComputedLocation"`
 	Group                  Group            `json:"group"`
 	DeviceType             IdName           `json:"deviceType"`
-	AverageSnr             int64            `json:"averageSnr"`
-	AverageRssi            int64            `json:"averageRssi"`
+	AverageSnr             int64            `json:"averageSnr,omitempty"`
+	AverageRssi            int64            `json:"averageRssi,omitempty"`
 	ActivationTime         int64            `json:"activationTime"`
 	Contract               IdName           `json:"contract"`
 	Token                  Token            `json:"token"`
