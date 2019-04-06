@@ -1,14 +1,16 @@
-package models
+package devices
 
-type SigfoxBaseStation struct {
+import "github.com/adrien3d/go-sigfox-client/models"
+
+type BaseStation struct {
 	Id string `json:"id"`
 }
 
 type ReceptionInfos struct {
-	SigfoxBaseStation SigfoxBaseStation `json:"baseStation"`
-	Delay             float64           `json:"delay"`
-	Latitude          string            `json:"lat"` //TODO: conversion from string to float64
-	Longitude         string            `json:"lng"` //TODO: conversion from string to float64
+	BaseStation BaseStation `json:"baseStation"`
+	Delay       float64     `json:"delay"`
+	Latitude    string      `json:"lat"` //TODO: conversion from string to float64
+	Longitude   string      `json:"lng"` //TODO: conversion from string to float64
 }
 
 type ComputedLocation struct {
@@ -18,12 +20,12 @@ type ComputedLocation struct {
 	Source    int64   `json:"source" bson:"source" valid:"-"`
 }
 
-type SigfoxDevice struct {
+type Device struct {
 	Id string `json:"id"`
 }
 
-type SigfoxMessage struct {
-	Device          SigfoxDevice       `json:"device" `
+type DeviceMessage struct {
+	Device          Device             `json:"device"`
 	Time            int64              `json:"time"`
 	Data            string             `json:"data"`
 	RolloverCounter int64              `json:"rolloverCounter"`
@@ -36,11 +38,7 @@ type SigfoxMessage struct {
 	Lqi             int64              `json:"lqi"`
 }
 
-type NextURL struct {
-	SigfoxNextURL string `json:"next" bson:"next"`
-}
-
-type APIMessages struct {
-	Messages []SigfoxMessage `json:"data" bson:"data"`
-	Paging   NextURL         `json:"paging" bson:"paging"`
+type DeviceMessages struct {
+	Messages []DeviceMessage `json:"data" bson:"data"`
+	Paging   models.NextURL  `json:"paging" bson:"paging"`
 }
