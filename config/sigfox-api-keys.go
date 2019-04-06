@@ -34,7 +34,5 @@ func ExtractSigfoxAPIKey(fileName string) models.APIKeys {
 	err = json.Unmarshal(file, &data)
 	utils.CheckErr(err)
 
-	fmt.Println(data)
-
 	return data
 }

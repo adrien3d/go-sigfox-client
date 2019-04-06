@@ -20,12 +20,12 @@ type ComputedLocation struct {
 	Source    int64   `json:"source" bson:"source" valid:"-"`
 }
 
-type Device struct {
+type DeviceId struct {
 	Id string `json:"id"`
 }
 
 type DeviceMessage struct {
-	Device          Device             `json:"device"`
+	Device          DeviceId           `json:"device"`
 	Time            int64              `json:"time"`
 	Data            string             `json:"data"`
 	RolloverCounter int64              `json:"rolloverCounter"`
