@@ -53,4 +53,11 @@ func (a *API) SetupRouter() {
 		users.GET("/:id/info", userController.GetUser)
 		users.GET("/:id/infos", userController.GetUsers)
 	}
+
+	contracts := router.Group("/contracts")
+	{
+		contractController := controllers.NewContractController()
+		contracts.GET("/:id/info", contractController.GetContract)
+		contracts.GET("/:id/infos", contractController.GetContracts)
+	}
 }

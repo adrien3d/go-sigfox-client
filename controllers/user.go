@@ -13,7 +13,7 @@ func NewUserController() UserController {
 }
 
 func (uc UserController) GetUser(c *gin.Context) {
-	url := "https://api.sigfox.com/v2/api-users/" + c.Param("userId")
+	url := "https://api.sigfox.com/v2/api-users/" + c.Param("id")
 	SigfoxAPIRequest(c, url, new(models.User))
 }
 
