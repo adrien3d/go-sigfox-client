@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -40,12 +39,15 @@ func handleRequest(c *gin.Context, req *http.Request, respType interface{}) {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err)
+		logrus.Fatalln(err)
 	}
+
+	if (resp.StatusCode != http.StatusOK) && (resp.StatusCode != http.StatusCreated) && (resp.StatusCode != http.StatusNoContent) {
+		logrus.Warnln(resp.StatusCode, resp.Body)
+	}
+
 	bodyResp, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err.Error())
-	}
+	CheckErr(err)
 
 	err = json.Unmarshal(bodyResp, &respType)
 	if err != nil {
@@ -53,6 +55,5 @@ func handleRequest(c *gin.Context, req *http.Request, respType interface{}) {
 		panic(err.Error())
 	}
 
-	fmt.Println(resp.StatusCode)
 	c.JSON(http.StatusOK, respType)
 }

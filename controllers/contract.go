@@ -12,12 +12,12 @@ type ContractController struct {
 func NewContractController() ContractController {
 	return ContractController{}
 }
-func (cc ContractController) GetContract(c *gin.Context) {
+func (ContractController) GetContract(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/contract-infos/" + c.Param("id")
 	utils.SigfoxAPIRequest(c, url, new(models.Contract))
 }
 
-func (cc ContractController) GetContracts(c *gin.Context) {
+func (ContractController) GetContracts(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/contract-infos/"
 	utils.SigfoxAPIRequest(c, url, new(models.Contracts))
 }

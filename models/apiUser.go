@@ -1,6 +1,6 @@
 package models
 
-type User struct {
+type ApiUser struct {
 	Name         string   `json:"name"`
 	Timezone     string   `json:"timezone"`
 	Group        Group    `json:"group"`
@@ -10,7 +10,7 @@ type User struct {
 	Profiles     []IdName `json:"profiles"`
 }
 
-type Users struct {
-	Users  []User  `json:"data"`
-	Paging NextURL `json:"paging"`
+type ApiUsers struct {
+	Users  []ApiUser `json:"data"`
+	Paging NextURL   `json:"paging"`
 }

@@ -16,7 +16,7 @@ func NewCoverageController() CoverageController {
 	return CoverageController{}
 }
 
-func (cc CoverageController) GetCoveragePrediction(c *gin.Context) {
+func (CoverageController) GetCoveragePrediction(c *gin.Context) {
 	var params models.CoverageQueryParams
 	if c.ShouldBind(&params) == nil {
 		if (math.Abs(params.Lat) < 85) && (math.Abs(params.Lng) < 180) {
@@ -33,7 +33,7 @@ func (cc CoverageController) GetCoveragePrediction(c *gin.Context) {
 	}
 }
 
-func (cc CoverageController) GetCoveragePredictions(c *gin.Context) {
+func (CoverageController) GetCoveragePredictions(c *gin.Context) {
 	var params models.CoveragesRequest
 	if c.BindJSON(&params) == nil {
 		url := "https://api.sigfox.com/v2/coverages/global/predictions"

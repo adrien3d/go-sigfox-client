@@ -38,20 +38,12 @@ func (a *API) SetupRouter() {
 	router.Use(ConfigMiddleware(a.Config))
 
 	router.GET("/", Index)
-	devices := router.Group("/devices")
-	{
-		deviceController := controllers.NewDeviceController()
-		devices.GET("/:id/info", deviceController.GetDevice)
-		devices.GET("/:id/infos", deviceController.GetDevices)
-		devices.GET("/:id/messages", deviceController.GetDeviceMessages)
-		devices.GET("/:id/locations", deviceController.GetDeviceLocations)
-	}
 
-	users := router.Group("/users")
+	users := router.Group("/api-users")
 	{
-		userController := controllers.NewUserController()
-		users.GET("/:id/info", userController.GetUser)
-		users.GET("/:id/infos", userController.GetUsers)
+		apiUserController := controllers.NewApiUserController()
+		users.GET("/:id/info", apiUserController.GetApiUser)
+		users.GET("/:id/infos", apiUserController.GetApiUsers)
 	}
 
 	contracts := router.Group("/contracts")
@@ -67,5 +59,21 @@ func (a *API) SetupRouter() {
 		coverages.GET("/prediction", coverageController.GetCoveragePrediction)
 		coverages.GET("/predictions", coverageController.GetCoveragePredictions)
 		coverages.GET("/redundancy", coverageController.GetCoverageRedundancy)
+	}
+
+	devices := router.Group("/devices")
+	{
+		deviceController := controllers.NewDeviceController()
+		devices.GET("/:id/info", deviceController.GetDevice)
+		devices.GET("/:id/infos", deviceController.GetDevices)
+		devices.GET("/:id/messages", deviceController.GetDeviceMessages)
+		devices.GET("/:id/locations", deviceController.GetDeviceLocations)
+	}
+
+	deviceTypes := router.Group("device-types")
+	{
+		devicetypeController := controllers.NewDeviceTypeController()
+		deviceTypes.GET("/:id/info", devicetypeController.GetDeviceType)
+		deviceTypes.GET("/:id/infos", devicetypeController.GetDeviceTypes)
 	}
 }
