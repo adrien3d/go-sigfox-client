@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/adrien3d/go-sigfox-client/models"
-	"github.com/adrien3d/go-sigfox-client/utils"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"os"
 )
@@ -37,7 +37,10 @@ func ExtractSigfoxAPIKey(fileName string) models.APIKeys {
 	}
 
 	err = json.Unmarshal(file, &data)
-	utils.CheckErr(err)
+	if err != nil {
+		logrus.Errorln(err)
+		panic(err)
+	}
 
 	return data
 }

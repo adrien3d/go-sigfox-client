@@ -60,4 +60,12 @@ func (a *API) SetupRouter() {
 		contracts.GET("/:id/info", contractController.GetContract)
 		contracts.GET("/:id/infos", contractController.GetContracts)
 	}
+
+	coverages := router.Group("/coverage")
+	{
+		coverageController := controllers.NewCoverageController()
+		coverages.GET("/prediction", coverageController.GetCoveragePrediction)
+		coverages.GET("/predictions", coverageController.GetCoveragePredictions)
+		coverages.GET("/redundancy", coverageController.GetCoverageRedundancy)
+	}
 }

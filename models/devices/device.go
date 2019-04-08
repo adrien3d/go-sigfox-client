@@ -3,8 +3,8 @@ package devices
 import "github.com/adrien3d/go-sigfox-client/models"
 
 type Location struct {
-	Latitude  float64 `json:"lat"`
-	Longitude float64 `json:"lng"`
+	Latitude  float64 `json:"lat" form:"lat"`
+	Longitude float64 `json:"lng" form:"lng"`
 }
 
 type ComputedLocation struct {
