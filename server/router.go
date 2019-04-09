@@ -83,4 +83,10 @@ func (a *API) SetupRouter() {
 		groups.GET("/:id/info", groupController.GetGroup)
 		groups.GET("/:id/infos", groupController.GetGroups)
 	}
+
+	profiles := router.Group("/profiles")
+	{
+		profileController := controllers.NewProfileController()
+		profiles.GET("/:id/infos", profileController.GetProfiles)
+	}
 }

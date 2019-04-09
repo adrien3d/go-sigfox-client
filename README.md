@@ -9,12 +9,12 @@ To get the Sigfox API Keys, please follow Sigfox [guide](https://support.sigfox.
 
 ## Scope
 
-*[ ] Users
-*[ ] Contract
-*[x] Coverages
-*[ ] Devices
-*[ ] DeviceTypes
-*[ ] Groups
-*[ ] Profiles
-*[ ] Tiles
-*[ ] Userss
+- [ ] Users
+- [ ] Contract
+- [x] Coverages
+- [ ] Devices
+- [ ] DeviceTypes
+- [ ] Groups
+- [x] Profiles
+- [ ] Tiles
+- [ ] Users
