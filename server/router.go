@@ -76,4 +76,11 @@ func (a *API) SetupRouter() {
 		deviceTypes.GET("/:id/info", devicetypeController.GetDeviceType)
 		deviceTypes.GET("/:id/infos", devicetypeController.GetDeviceTypes)
 	}
+
+	groups := router.Group("/groups")
+	{
+		groupController := controllers.NewGroupController()
+		groups.GET("/:id/info", groupController.GetGroup)
+		groups.GET("/:id/infos", groupController.GetGroups)
+	}
 }
