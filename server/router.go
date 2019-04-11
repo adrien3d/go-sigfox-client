@@ -39,11 +39,11 @@ func (a *API) SetupRouter() {
 
 	router.GET("/", Index)
 
-	users := router.Group("/api-users")
+	apiUsers := router.Group("/api-users")
 	{
 		apiUserController := controllers.NewApiUserController()
-		users.GET("/:id/info", apiUserController.GetApiUser)
-		users.GET("/:id/infos", apiUserController.GetApiUsers)
+		apiUsers.GET("/:id/info", apiUserController.GetApiUser)
+		apiUsers.GET("/:id/infos", apiUserController.GetApiUsers)
 	}
 
 	contracts := router.Group("/contracts")
@@ -88,5 +88,12 @@ func (a *API) SetupRouter() {
 	{
 		profileController := controllers.NewProfileController()
 		profiles.GET("/:id/infos", profileController.GetProfiles)
+	}
+
+	users := router.Group("/users")
+	{
+		userController := controllers.NewUserController()
+		users.GET("/:id/info", userController.GetUser)
+		users.GET("/:id/infos", userController.GetUsers)
 	}
 }
