@@ -44,6 +44,7 @@ func (a *API) SetupRouter() {
 		apiUserController := controllers.NewApiUserController()
 		apiUsers.GET("/:id/info", apiUserController.GetApiUser)
 		apiUsers.GET("/:id/infos", apiUserController.GetApiUsers)
+		apiUsers.POST("/:id", apiUserController.CreateApiUser)
 	}
 
 	contracts := router.Group("/contracts")

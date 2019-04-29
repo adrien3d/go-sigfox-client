@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/adrien3d/go-sigfox-client/models"
+	"github.com/adrien3d/go-sigfox-client/models/devices"
 	"github.com/adrien3d/go-sigfox-client/utils"
 	"github.com/gin-gonic/gin"
 )
@@ -20,4 +21,9 @@ func (ContractController) GetContract(c *gin.Context) {
 func (ContractController) GetContracts(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/contract-infos/"
 	utils.SigfoxAPIRequest(c, url, new(models.Contracts))
+}
+
+func (ContractController) GetContractDevices(c *gin.Context) {
+	url := "https://api.sigfox.com/v2/contract-infos/" + c.Param("id") + "/devices"
+	utils.SigfoxAPIRequest(c, url, new(devices.Devices))
 }

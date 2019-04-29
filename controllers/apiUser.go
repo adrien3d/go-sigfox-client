@@ -22,3 +22,11 @@ func (ApiUserController) GetApiUsers(c *gin.Context) {
 	url := "https://api.sigfox.com/v2/api-users/"
 	utils.SigfoxAPIRequest(c, url, new(models.ApiUsers))
 }
+
+func (ApiUserController) CreateApiUser(c *gin.Context) {
+	var params models.NewApiUserRequest
+	if c.BindJSON(&params) == nil {
+		url := "https://api.sigfox.com/v2/api-users/"
+		utils.SigfoxAPIBodyRequest(c, url, params, new(models.NewApiUserResponse))
+	}
+}

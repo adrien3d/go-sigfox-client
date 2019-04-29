@@ -14,3 +14,14 @@ type ApiUsers struct {
 	Users  []ApiUser `json:"data"`
 	Paging NextURL   `json:"paging"`
 }
+
+type NewApiUserRequest struct {
+	GroupID    string   `json:"groupId"`
+	Name       string   `json:"name"`
+	Timezone   string   `json:"timezone"`
+	ProfileIds []string `json:"profileIds"`
+}
+
+type NewApiUserResponse struct {
+	ID string `json:"id"`
+}

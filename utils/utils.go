@@ -52,8 +52,8 @@ func handleRequest(c *gin.Context, req *http.Request, respType interface{}) {
 	err = json.Unmarshal(bodyResp, &respType)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, "Wrong Sigfox API response, please check the provided credentials")
-		logrus.Fatalln(resp.StatusCode, resp.Body, bodyResp)
-		logrus.Fatalln(err.Error())
+		logrus.Warnln(resp.StatusCode, resp.Body, bodyResp)
+		logrus.Warnln(err.Error())
 	}
 
 	c.JSON(http.StatusOK, respType)
