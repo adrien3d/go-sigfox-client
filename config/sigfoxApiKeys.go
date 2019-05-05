@@ -16,8 +16,10 @@ func RetrieveSigfoxAPIKey(c *gin.Context) models.APIKey {
 	id := c.Param("id")
 
 	for _, key := range apiKeys.Keys {
-		if key.SigfoxId == id {
-			ret = key
+		for _, sigId := range key.SigfoxId {
+			if sigId == id {
+				ret = key
+			}
 		}
 		if key.DeviceTypeId == id {
 			ret = key

@@ -5,10 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/adrien3d/go-sigfox-client/config"
+	"github.com/adrien3d/go-sigfox-client/models/devices"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
+	"reflect"
+	"time"
 )
 
 func CheckErr(e error) {
@@ -54,6 +57,25 @@ func handleRequest(c *gin.Context, req *http.Request, respType interface{}) {
 		c.JSON(http.StatusInternalServerError, "Wrong Sigfox API response, please check the provided credentials")
 		logrus.Warnln(resp.StatusCode, resp.Body, bodyResp)
 		logrus.Warnln(err.Error())
+	}
+
+	switch reflect.ValueOf(respType).Elem().Interface().(type) {
+	case devices.Devices:
+		fmt.Println("Devices detected")
+		var devs = devices.Devices{}
+		CheckErr(json.Unmarshal(bodyResp, &devs))
+		for _, device := range devs.DeviceInfos {
+			unitTimeInRFC3339 := time.Unix(device.LastCom/1000, 0).Format(time.RFC850) // converts utc time to RFC3339 format
+			fmt.Println(unitTimeInRFC3339, device.Location, device.LastComputedLocation)
+		}
+	case devices.DeviceInformation:
+		fmt.Println("Device detected")
+	case devices.DeviceMessages:
+		var mess = devices.DeviceMessages{}
+		CheckErr(json.Unmarshal(bodyResp, &mess))
+		for i, mes := range mess.Messages {
+			fmt.Println(i, mes.CompLoc, mes.RInfos)
+		}
 	}
 
 	c.JSON(http.StatusOK, respType)

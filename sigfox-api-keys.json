@@ -2,7 +2,7 @@
   "data" : [
     {
       "name": "Device 1",
-      "sigfoxId": "AABBCC",
+      "sigfoxId": ["AABBCC"],
       "sigfoxKey": "123456789123456789123456",
       "sigfoxSecret": "12345678912345678912345678912345"
     },
