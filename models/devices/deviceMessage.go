@@ -3,11 +3,11 @@ package devices
 import "github.com/adrien3d/go-sigfox-client/models"
 
 type Repetition struct {
-	Nseq     int64   `json:"nseq"`
-	Rssi     float64 `json:"rssi"`
-	Snr      float64 `json:"snr"`
-	Freq     float64 `json:"freq"`
-	Repeated bool    `json:"repeated"`
+	Nseq     int64  `json:"nseq"`
+	Rssi     string `json:"rssi"` //Should be in float in Sigfox API
+	Snr      string `json:"snr"`  //Should be in float in Sigfox API
+	Freq     int64  `json:"freq"` //Should be in float in Sigfox API
+	Repeated bool   `json:"repeated"`
 }
 
 type CbStatus struct {
@@ -19,15 +19,15 @@ type CbStatus struct {
 
 type ReceptionInfos struct {
 	BaseStation   models.IdName `json:"baseStation"`
-	Delay         float64       `json:"delay"` // Not in Sigfox API Documentation
-	Rssi          float64       `json:"rssi,omitempty"`
-	RssiRepeaters float64       `json:"rssiRepeaters,omitempty"`
-	Latitude      string        `json:"lat"` //Should be in int in Sigfox API
-	Longitude     string        `json:"lng"` //Should be in int in Sigfox API
-	Snr           float64       `json:"snr,omitempty"`
-	SnrRepeaters  float64       `json:"snrRepeaters,omitempty"`
-	Freq          float64       `json:"freq,omitempty"`
-	FreqRepeaters float64       `json:"freqRepeaters,omitempty"`
+	Delay         float64       `json:"delay"`                   // Not in Sigfox API Documentation
+	Rssi          string        `json:"rssi,omitempty"`          //Should be in float in Sigfox API
+	RssiRepeaters string        `json:"rssiRepeaters,omitempty"` //Should be in float in Sigfox API
+	Latitude      string        `json:"lat"`                     //Should be in int in Sigfox API
+	Longitude     string        `json:"lng"`                     //Should be in int in Sigfox API
+	Snr           string        `json:"snr,omitempty"`           //Should be in float in Sigfox API
+	SnrRepeaters  string        `json:"snrRepeaters,omitempty"`  //Should be in float in Sigfox API
+	Freq          int64         `json:"freq,omitempty"`          //Should be in float in Sigfox API
+	FreqRepeaters int64         `json:"freqRepeaters,omitempty"` //Should be in float in Sigfox API
 	Rep           int64         `json:"rep,omitempty"`
 	Repetitions   []Repetition  `json:"repetitions,omitempty"`
 	CbStatus      CbStatus      `json:"cbStatus,omitempty"`
